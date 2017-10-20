@@ -1,0 +1,104 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="datos.Estado" %>
+<%@page import="datos.Estadia" %>
+
+<%@page import="java.util.List" %>
+
+<%@ include file="/_acceso.jsp" %>
+<%
+if(request.getAttribute("insert_hecho") != null){
+     response.sendRedirect("./Estadia?ok=true");
+}
+%>
+
+<%@ include file="/_menu.jsp"%>
+<%
+String nroHabitacion="";
+String capacidadMax = "";
+String desde = "";
+String hasta = "";
+String reserva = "";
+int idEstado=0;
+float precio = 0;
+float senia= 0;
+
+String titulo_pag = "Nueva";
+/*if(request.getAttribute("habitacion") != null){
+	Estadia c = (Estadia) request.getAttribute("habitacion");
+	
+	id = c.getIdHabitacion();
+	
+	nroHabitacion = c.getNroHabitacion();
+	capacidadMax = Integer.toString(c.getCapacidadMax());
+	disponible = c.getDisponible();
+	idEstado = c.get;
+	
+	
+	titulo_pag = "Habitacion";
+}*/
+
+
+String selectEstado = "";
+if(request.getAttribute("ListaEstado") != null){
+	List<Estado> estado = (List<Estado>) request.getAttribute("ListaEstado");
+	
+	for (Estado tipo : estado) {
+		String selected = (idEstado==tipo.getIdEstado()) ? "selected" : "";
+		selectEstado += "<option value='" +tipo.getIdEstado()+ "' " +selected+ ">"+ tipo.getEstado() +"</option>";
+	}
+}
+%>
+
+<ol class="breadcrumb">
+  <li class="active"><%=titulo_pag %> estadia</li>
+</ol>
+<form class="form-horizontal" action="" method="post">
+	<div class="form-group">
+		<label for="inputEmail3" class="col-sm-2 control-label">Precio</label>
+		<div class="col-sm-10">
+			<input type="number" class="form-control" name="precio" required="required" value="<%=precio %>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputPassword3" class="col-sm-2 control-label">Seña</label>
+		<div class="col-sm-10">
+			<input type="number" class="form-control" name="senia" required="required" value="<%=senia %>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputPassword3" class="col-sm-2 control-label">Estado</label>
+		<div class="col-sm-10">
+			<select class="form-control" name="idEstado" required="required">
+				<option value="">Estado</option>
+				
+				
+				<%=selectEstado %>
+				
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputPassword3" class="col-sm-2 control-label">F.Reserva</label>
+		<div class="col-sm-10">
+			<input type="date" class="form-control" name="reserva" required="required" value="<%=reserva %>">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputPassword3" class="col-sm-2 control-label">F.Desde</label>
+		<div class="col-sm-10">
+			<input type="date" class="form-control" name="desde" required="required" value="<%=desde %>">
+		</div>	
+	</div>
+	<div class="form-group">
+		<label for="inputPassword3" class="col-sm-2 control-label">F.Hasta</label>
+		<div class="col-sm-10">
+			<input type="date" class="form-control" name="hasta" required="required" value="<%=hasta %>">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10  text-right">
+			<button type="submit" class="btn btn-success">Guardar</button>
+		</div>
+	</div>
+</form>
+<%@ include file="/_footer.jsp"%>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.TipoHabitacion" table="tipohabitacion">
+		<id column="idTipoHabitacion" name="idTipoHabitacion">
+			<generator class="identity" />
+		</id>
+		<property name="tipoHabitacion" type="string" column="tipoHabitacion" />
+		<property name="descripcion" type="string" column="descripcion" />
+		<property name="precio" type="float" column="precio" />
+		
+		<set name="habitaciones" table="habitacion" order-by="idHabitacion asc" inverse="true" lazy="true" fetch="select">
+			<key column="idTipoHabitacion" not-null="true" />
+			<one-to-many class="datos.Habitacion" />
+		</set>	
+		
+	</class>
+</hibernate-mapping>

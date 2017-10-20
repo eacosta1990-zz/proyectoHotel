@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Factura" table="factura">
+		<id column="idFactura" name="idFactura">
+			<generator class="identity" />
+		</id>
+		<property name="nroFactura" type="int" column="nroFactura" />
+		<property name="fecha" type="calendar" column="fecha" />
+		<property name="estado" type="boolean" column="estado" />
+
+		<many-to-one name="formaPago" class="datos.FormaPago"	column="idFormaPago" not-null="true" />
+
+
+	<set name="facturaItem" table="facturaItem" inverse="true" lazy="true" fetch="select">
+			<key column="idFactura" not-null="true"/>
+			<one-to-many class="datos.FacturaItem" />	
+		</set>
+		
+	 <many-to-one name="login" class="datos.Login" column="idLogin" not-null="true"/> 
+	 
+			<many-to-one name="estadia" class="datos.Estadia" column="idEstadia" not-null="true"/>
+			
+			<many-to-one name="cliente" class="datos.Cliente" column="idCliente" not-null="true"/> 
+		
+
+
+	</class>
+</hibernate-mapping>

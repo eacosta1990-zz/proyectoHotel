@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Empleado" table="empleado">
+		<id column="idEmpleado" name="idEmpleado">
+			<generator class="identity" />
+		</id>
+		
+		<property name="nombre" type="string" column="nombre" />
+		<property name="apellido" type="string" column="apellido" />
+		<property name="dni" type="long" column="dni" />
+		<property name="telefono" type="string" column="telefono" />
+		<property name="direccion" type="string" column="direccion" />
+		<property name="email" type="string" column="email" />
+		<property name="nroLegajo" type="string" column="nroLegajo" />
+		<property name="sueldo" type="float" column="sueldo" />
+		 
+		<one-to-one name="login" class="datos.Login"/>
+		
+		<many-to-one name="tipoEmpleados" class="datos.TipoEmpleado" column="idTipoEmpleado" not-null="true"/>
+	</class>
+</hibernate-mapping>

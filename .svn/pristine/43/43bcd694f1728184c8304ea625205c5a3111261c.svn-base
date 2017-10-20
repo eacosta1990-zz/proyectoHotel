@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Estadia" table="estadia">
+		<id column="idEstadia" name="idEstadia">
+			<generator class="identity" />
+		</id>
+		<property name="fechaDesde" type="calendar" column="fechaDesde" />
+		<property name="fechaHasta" type="calendar" column="fechaHasta" />
+		<property name="senia" type="float" column="senia" />
+		<property name="fechaReserva" type="calendar" column="fechaReserva" />
+		<property name="precio" type="float" column="precio" />
+
+		<set name="habitaciones" table="habitacion_has_estadia" lazy="true"
+			outer-join="true">
+			<key column="idEstadia" />
+			<many-to-many column="idHabitacion" class="datos.Habitacion" />
+		</set>
+		
+		<many-to-one name="estado" class="datos.Estado" column="idEstado"	not-null="true" />
+			
+		
+			
+			
+			      
+		<set name="ticketConsumo" table="ticketConsumo" inverse="true" lazy="true" 	fetch="select">
+		 <key column="idEstadia" not-null="true" /> 
+		<one-to-many class="datos.TicketConsumo" /> 
+	   </set>
+<!--	
+ 	-->
+		<many-to-one name="frigobar" class="datos.Frigobar" column="idFrigobar"	not-null="true" />
+		
+		<set table="estadia_has_cliente" name="cliente" outer-join="true">
+			<key column="idEstadia" />
+			<many-to-many column="idCliente" class="datos.Cliente" />
+		</set>
+		
+		<set name="factura" table="factura" inverse="true" lazy="true" fetch="select">
+			<key column="idEstadia" not-null="true"/>
+			<one-to-many class="datos.Factura" />	
+		</set>
+		<!--  -->
+	</class>
+</hibernate-mapping>

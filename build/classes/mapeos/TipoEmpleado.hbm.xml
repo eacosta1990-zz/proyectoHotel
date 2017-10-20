@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.TipoEmpleado" table="tipoempleado">
+		<id name="idTipoEmpleado" column="idTipoEmpleado">
+			<generator class="identity" />
+		</id>
+		
+		<property name="tipoEmpleado" type="string" column="tipoEmpleado" />
+		
+		<set name="empleado" table="empleado" inverse="true" lazy="true" fetch="select">
+			<key column="idTipoEmpleado" not-null="true"/>
+			<one-to-many class="datos.Empleado" />	
+		</set>
+		
+	</class>
+</hibernate-mapping>

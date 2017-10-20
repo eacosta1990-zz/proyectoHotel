@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Servicio" table="servicio">
+		<id column="idServicio" name="idServicio">
+			<generator class="identity" />
+		</id>
+
+		<property name="servicio" type="string" column="servicio" />
+		<property name="descripcion" type="string" column="descripcion" />
+		<property name="incluido" type="boolean" column="incluido" />
+		<property name="disponible" type="boolean" column="disponible" />
+		<property name="precio" type="float" column="precio" />
+		
+		<many-to-one name="hotel" class="datos.Hotel" column="idHotel" not-null="true"/>
+		
+	</class>
+</hibernate-mapping>

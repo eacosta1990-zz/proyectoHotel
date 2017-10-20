@@ -1,0 +1,75 @@
+package negocio;
+
+import java.util.List;
+
+import dao.ClienteDao;
+import datos.Cliente;
+
+public class ClienteABM {
+	ClienteDao dao = new ClienteDao();
+
+	public Cliente traerCliente(int idCliente) {
+		Cliente c = dao.traerCliente(idCliente);
+		// implementar si c es null lanzar Exception
+		return c;
+	}
+	
+	public Cliente traerCliente(long dni) {
+		Cliente c = dao.traerCliente(dni);
+		// implementar si c es null lanzar Exception
+		return c;
+	}
+
+
+	public int agregar(String nombre, String apellido,long dni, String telefono, String direccion,
+			String email)throws Exception {
+		// consultar si existe un Cliente con el mismo dni, si existe arrojar la
+		// Excepcion
+		List<Cliente> clientes =traerCliente();
+		for(Cliente cliente: clientes){
+			if(cliente.getEmail().equals(email)){
+				throw new Exception("EMAIL  EXISTENTE");
+
+			}
+		}
+		
+		if(traerCliente(dni)==null){
+			throw new Exception("DNI EXISTENTE");
+		}
+			
+		
+		Cliente c = new Cliente(nombre, apellido, telefono, direccion, dni, email);
+
+		return dao.agregar(c);
+	}
+
+	public void modificar(Cliente c) {
+		/*
+		 * implementar antes de actualizar que no exista un Cliente con el mismo
+		 * documento a modificar y con el mismo id, lanzar la Exception
+		 */
+		dao.actualizar(c);
+	}
+
+	public void eliminar(int idCliente) {
+		Cliente c = dao.traerCliente(idCliente);
+		dao.eliminar(c);
+	}
+
+	public List<Cliente> traerCliente() {
+		return dao.traerCliente();
+	}
+	
+	public Cliente traerClienteEstadias(int idCliente) {
+		Cliente c = dao.traerClienteEstadias(idCliente);
+		// implementar si c es null lanzar Exception
+		return c;
+	}
+	/*
+	public Cliente traerClienteYCliente(long idCliente) {
+		Cliente c = dao.traerClienteYCliente(idCliente);
+		// implementar si c es null lanzar Exception
+		return c;
+	}
+	*/
+}

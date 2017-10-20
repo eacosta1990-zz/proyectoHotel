@@ -1,0 +1,22 @@
+﻿----- SVN -----
+
+- url: https://hotelunla.svn.beanstalkapp.com/sistema_hotel/
+- Usuario: unla
+- Contraseña: hotel123
+
+----- DB -----
+
+host: joakoo.no-ip.org
+
+puerto: 8088
+
+usuario: hotel_unla
+
+nombre DB: hotel_unla
+
+pass: hotel123
+
+----- ACCESO -----
+
+usuario: admin
+Contraseña: admin

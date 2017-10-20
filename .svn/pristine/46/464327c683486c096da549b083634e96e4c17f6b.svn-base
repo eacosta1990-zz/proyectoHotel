@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.FrigobarItem" table="frigobarItem">
+		<id column="idFrigobarItem" name="idFrigobarItem">
+			<generator class="identity" />
+		</id>
+		<property name="stockExistente" type="int" column="stockExistente" />
+		<property name="stockDeseable" type="int" column="stockDeseable" />
+		
+		
+		<many-to-one name="frigobar" class="datos.Frigobar" column="idFrigobar"	not-null="true" />
+		
+		<many-to-one name="consumo" class="datos.Consumo" column="idConsumo"	not-null="true" />
+		
+
+		
+	</class>
+</hibernate-mapping>

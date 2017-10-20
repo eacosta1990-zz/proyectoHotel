@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>SistemaHotel</display-name>
+	<welcome-file-list>
+		<welcome-file>/cliente/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>ControladorMostrarCliente</servlet-name>
+		<servlet-class>controladores.ControladorMostrarEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorMostrarCliente</servlet-name>
+		<url-pattern>/MostrarCliente</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorValidarLogin</servlet-name>
+		<servlet-class>controladores.ControladorValidarLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorValidarLogin</servlet-name>
+		<url-pattern>/ValidarLogin</url-pattern>
+	</servlet-mapping>
+
+<!-- *************** TIPO EMPLEADO *************** -->	
+	<servlet>
+		<servlet-name>ControladorTraerTipoEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorTipoEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerTipoEmpleado</servlet-name>
+		<url-pattern>/TipoEmpleado</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarTipoEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorEliminarTipoEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarTipoEmpleado</servlet-name>
+		<url-pattern>/EliminarTipoEmpleado</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaTipoEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorAltaTipoEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaTipoEmpleado</servlet-name>
+		<url-pattern>/AltaTipoEmpleado</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarTipoEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorModificarTipoEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarTipoEmpleado</servlet-name>
+		<url-pattern>/ModificarTipoEmpleado</url-pattern>
+	</servlet-mapping>
+	
+
+<!-- *************** TIPO Habitacion *************** -->	
+	<servlet>
+		<servlet-name>ControladorTraerTipoHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorTipoHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerTipoHabitacion</servlet-name>
+		<url-pattern>/TipoHabitacion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarTipoHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorEliminarTipoHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarTipoHabitacion</servlet-name>
+		<url-pattern>/EliminarTipoHabitacion</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaTipoHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorAltaTipoHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaTipoHabitacion</servlet-name>
+		<url-pattern>/AltaTipoHabitacion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarTipoHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorModificarTipoHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarTipoHabitacion</servlet-name>
+		<url-pattern>/ModificarTipoHabitacion</url-pattern>
+	</servlet-mapping>
+	
+	<!-- *************** Habitacion *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorTraerHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerHabitacion</servlet-name>
+		<url-pattern>/Habitacion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorEliminarHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarHabitacion</servlet-name>
+		<url-pattern>/EliminarHabitacion</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorAltaHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaHabitacion</servlet-name>
+		<url-pattern>/AltaHabitacion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarHabitacion</servlet-name>
+		<servlet-class>controladores.ControladorModificarHabitacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarHabitacion</servlet-name>
+		<url-pattern>/ModificarHabitacion</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- *************** Estadia *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorTraerEstadia</servlet-name>
+		<servlet-class>controladores.ControladorEstadia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerEstadia</servlet-name>
+		<url-pattern>/Estadia</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarEstadia</servlet-name>
+		<servlet-class>controladores.ControladorEliminarEstadia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarEstadia</servlet-name>
+		<url-pattern>/EliminarEstadia</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaEstadia</servlet-name>
+		<servlet-class>controladores.ControladorAltaEstadia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaEstadia</servlet-name>
+		<url-pattern>/AltaEstadia</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarEstadia</servlet-name>
+		<servlet-class>controladores.ControladorModificarEstadia</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarEstadia</servlet-name>
+		<url-pattern>/ModificarEstadia</url-pattern>
+	</servlet-mapping>
+	<!-- *************** Consumo *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorConsumo</servlet-name>
+		<servlet-class>controladores.ControladorConsumo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorConsumo</servlet-name>
+		<url-pattern>/Consumo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ControladorAltaConsumo</servlet-name>
+		<servlet-class>controladores.ControladorAltaConsumo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaConsumo</servlet-name>
+		<url-pattern>/AltaConsumo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ControladorEliminarConsumo</servlet-name>
+		<servlet-class>controladores.ControladorEliminarConsumo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarConsumo</servlet-name>
+		<url-pattern>/EliminarConsumo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ControladorModificarConsumo</servlet-name>
+		<servlet-class>controladores.ControladorModificarConsumo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarConsumo</servlet-name>
+		<url-pattern>/ModificarConsumo</url-pattern>
+	</servlet-mapping>
+
+		<!-- *************** Tipo Mantenimiento *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorTraerTipoMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorTipoMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerTipoMantenimiento</servlet-name>
+		<url-pattern>/TipoMantenimiento</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarTipoMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorEliminarTipoMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarTipoMantenimiento</servlet-name>
+		<url-pattern>/EliminarTipoMantenimiento</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaTipoMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorAltaTipoMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaTipoMantenimiento</servlet-name>
+		<url-pattern>/AltaTipoMantenimiento</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarTipoMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorModificarTipoMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarTipoMantenimiento</servlet-name>
+		<url-pattern>/ModificarTipoMantenimiento</url-pattern>
+	</servlet-mapping>
+			<!-- *************** TICKET MANTENIMIENTO*************** -->
+		
+	<servlet>
+		<servlet-name>ControladorTraerTicketMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorTicketMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerTicketMantenimiento</servlet-name>
+		<url-pattern>/TicketMantenimiento</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarTicketMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorEliminarTicketMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarTicketMantenimiento</servlet-name>
+		<url-pattern>/EliminarTicketMantenimiento</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaTicketMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorAltaTicketMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaTicketMantenimiento</servlet-name>
+		<url-pattern>/AltaTicketMantenimiento</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarTicketMantenimiento</servlet-name>
+		<servlet-class>controladores.ControladorModificarTicketMantenimiento</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarTicketMantenimiento</servlet-name>
+		<url-pattern>/ModificarTicketMantenimiento</url-pattern>
+	</servlet-mapping>
+	<!-- *************** Empleado *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEmpleado</servlet-name>
+		<url-pattern>/Empleado</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorEliminarEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarEmpleado</servlet-name>
+		<url-pattern>/EliminarEmpleado</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorAltaEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaEmpleado</servlet-name>
+		<url-pattern>/AltaEmpleado</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarEmpleado</servlet-name>
+		<servlet-class>controladores.ControladorModificarEmpleado</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarEmpleado</servlet-name>
+		<url-pattern>/ModificarEmpleado</url-pattern>
+	</servlet-mapping>
+	<!-- *************** Cliente *************** -->
+		
+	<servlet>
+		<servlet-name>ControladorCliente</servlet-name>
+		<servlet-class>controladores.ControladorCliente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorCliente</servlet-name>
+		<url-pattern>/Cliente</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarCliente</servlet-name>
+		<servlet-class>controladores.ControladorEliminarCliente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarCliente</servlet-name>
+		<url-pattern>/EliminarCliente</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaCliente</servlet-name>
+		<servlet-class>controladores.ControladorAltaCliente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaCliente</servlet-name>
+		<url-pattern>/AltaCliente</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarCliente</servlet-name>
+		<servlet-class>controladores.ControladorModificarCliente</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarCliente</servlet-name>
+		<url-pattern>/ModificarCliente</url-pattern>
+	</servlet-mapping>
+	
+		<!-- *************** Frigobar *************** -->
+	
+	
+	
+	<servlet>
+		<servlet-name>ControladorTraerFrigobar</servlet-name>
+		<servlet-class>controladores.ControladorFrigobar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorTraerFrigobar</servlet-name>
+		<url-pattern>/Frigobar</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorEliminarFrigobar</servlet-name>
+		<servlet-class>controladores.ControladorEliminarFrigobar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarFrigobar</servlet-name>
+		<url-pattern>/EliminarFrigobar</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaFrigobar</servlet-name>
+		<servlet-class>controladores.ControladorFrigobar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaFrigobar</servlet-name>
+		<url-pattern>/AltaFrigobar</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarFrigobar</servlet-name>
+		<servlet-class>controladores.ControladorModificarFrigobar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarFrigobar</servlet-name>
+		<url-pattern>/ModificarFrigobar</url-pattern>
+	</servlet-mapping>
+	
+	<!-- *************** FrigobarItem *************** -->
+	
+		<servlet>
+		<servlet-name>ControladorFrigobarItem</servlet-name>
+		<servlet-class>controladores.ControladorFrigobarItem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorFrigobarItem</servlet-name>
+		<url-pattern>/FrigobarItem</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>ControladorEliminarFrigobarItem</servlet-name>
+		<servlet-class>controladores.ControladorEliminarFrigobarItem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEliminarFrigobarItem</servlet-name>
+		<url-pattern>/EliminarFrigobarItem</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>ControladorAltaFrigobarItem</servlet-name>
+		<servlet-class>controladores.ControladorAltaFrigobarItem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaFrigobarItem</servlet-name>
+		<url-pattern>/AltaFrigobarItem</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorModificarFrigobarItem</servlet-name>
+		<servlet-class>controladores.ControladorModificarFrigobarItem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorModificarFrigobarItem</servlet-name>
+		<url-pattern>/ModificarFrigobarItem</url-pattern>
+	</servlet-mapping>
+	  <!--						 VISTA PRECIO                 -->
+  <servlet>
+    <servlet-name>ControladorVistaPrecio</servlet-name>
+    <servlet-class>controladores.ControladorVistaPrecio</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControladorVistaPrecio</servlet-name>
+    <url-pattern>/VistaPrecio</url-pattern>
+  </servlet-mapping>
+  
+  <!--						 VISTA HABITACION                 -->
+  <servlet>
+    <servlet-name>ControladorVistaHabitacionPorTipo</servlet-name>
+    <servlet-class>controladores.ControladorVistaHabitacionPorTipo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControladorVistaHabitacionPorTipo</servlet-name>
+    <url-pattern>/VistaHabitacion</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- estadia index -->
+  	<servlet>
+		<servlet-name>ControladorAltaPrueba</servlet-name>
+		<servlet-class>controladores.ControladorAltaPrueba</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorAltaPrueba</servlet-name>
+		<url-pattern>/AltaPrueba</url-pattern>
+	</servlet-mapping>
+	<!--  cargar consumo -->
+	  	<servlet>
+		<servlet-name>ControladorGenerarConsumo</servlet-name>
+		<servlet-class>controladores.ControladorGenerarConsumo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorGenerarConsumo</servlet-name>
+		<url-pattern>/GenerarConsumo</url-pattern>
+	</servlet-mapping>
+</web-app>

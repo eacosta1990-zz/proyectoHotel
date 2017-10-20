@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Login" table="login">
+		<id name="idLogin" column="idLogin">
+			<generator class="identity" />
+		</id>
+		<property name="usuario" type="string" column="usuario" />
+		<property name="clave" type="string" column="clave" />
+		<property name="privilegio" type="int" column="privilegio" />
+		 
+		 <one-to-one name="empleado" class="datos.Empleado"/>
+		 
+		 
+	<set name="factura" table="factura" inverse="true" lazy="true" fetch="select">
+			<key column="idLogin" not-null="true"/>
+			<one-to-many class="datos.Factura" />	
+		</set>
+		
+		 
+		
+		<set name="ticketConsumo" table="ticketConsumo" inverse="true" lazy="true" fetch="select">
+			<key column="idLogin" not-null="true"/>
+			<one-to-many class="datos.TicketConsumo" />	
+		</set>
+	
+		 
+		<set name="ticketMantenimiento" table="ticketMantenimiento" inverse="true" lazy="true" fetch="select">
+			<key column="idLogin" not-null="true"/>
+			<one-to-many class="datos.TicketMantenimiento" />	
+		</set> 
+	
+	
+		
+		
+		
+	</class>
+</hibernate-mapping>

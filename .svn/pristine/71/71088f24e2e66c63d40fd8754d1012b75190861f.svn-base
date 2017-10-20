@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Cliente" table="cliente">
+		<id column="idCliente" name="idCliente">
+			<generator class="identity" />
+		</id>
+		<property name="nombre" type="string" column="nombre" />
+		<property name="apellido" type="string" column="apellido" />
+		<property name="telefono" type="string" column="telefono" />
+		<property name="email" type="string" column="email" />
+		<property name="direccion" type="string" column="direccion" />
+		<property name="dni" type="long" column="dni" />
+		
+ <!-- 
+		<set name="factura" table="factura" inverse="true" lazy="true"
+			fetch="select">
+			<key column="idCliente" not-null="true" />
+			<one-to-many class="datos.Factura" />
+		</set>
+ -->
+		<set table="estadia_has_cliente" name="estadia" outer-join="true">
+			<key column="idCliente" />
+			<many-to-many column="idEstadia" class="datos.Estadia" />
+		</set>
+
+
+	</class>
+</hibernate-mapping>

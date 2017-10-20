@@ -1,0 +1,94 @@
+<%@ include file="/_cabecera.jsp" %>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+           		<a class="navbar-brand" href=".">Sistema Hotel</a>
+                <p class="navbar-text">Bienvenido <%=(request.getSession().getAttribute("nomLogin")) %>.</p>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="desconectar.jsp">Desconectar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div  class="container-fluid">
+        <div class="row">
+        
+            <div  class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                
+          	<%if(privi==40){%>
+                	
+              
+                    <li><a href="./Empleado">Empleado</a></li>
+               
+          
+  
+                    <li><a href="./Cliente">Cliente</a></li>
+                      <% } %>
+                </ul>
+           
+                <ul class="nav nav-sidebar">
+               	<%if(privi == 20 || privi==40){%>
+                
+                    <li><a href="./Habitacion">Habitación</a></li>
+                    <li><a href="./Estadia">Estadía</a></li>
+                    <li><a href="./Consumo">Consumo</a></li>
+                                        <li><a href="./FrigobarItem">Frigobar</a></li>
+                    
+                <% } %>
+                  
+                    
+                </ul>
+                
+                
+                <ul class="nav nav-sidebar">
+                <%if(privi >= 40){%>
+                    <li><a href="./TipoHabitacion">Tipo Habitación</a></li>
+                    <li><a href="./TipoEmpleado">Tipo Empleado</a></li>
+                     <% } %>
+                <%if(privi >= 30){%>
+                     
+                    <li><a href="./TipoMantenimiento">Tipo Mantenimiento</a></li>
+               <% } %>
+                 <%if(privi == 10 || privi>=30){%>
+                      <li><a href="./GenerarConsumo">Cargar Consumo</a></li>
+                 
+                     <li><a href="./TicketMantenimiento">Ticket Mantenimiento</a></li>
+                 <% } %>
+                	
+                </ul>
+               
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            	<% if(request.getSession().getAttribute("msgErr") != null){ %>
+            		<div class="alert alert-danger">
+	            	<%
+	            	out.print(request.getSession().getAttribute("msgErr"));
+		            request.getSession().setAttribute("msgErr", null);
+		            %>
+	            	</div>
+	            <% } %>
+	            	<% if(request.getSession().getAttribute("msgOK") != null){ %>
+            		<div class="alert alert-success">
+	            	<%
+	            	out.print(request.getSession().getAttribute("msgOK"));
+		            request.getSession().setAttribute("msgOK", null);
+		            %>
+	            	</div>
+	            <% } %>
+	            <% if(request.getParameter("ok") != null){ %>
+            		<div class="alert alert-success">
+            		Guardado correctamente!
+	            	</div>
+	            <% } %>
+	            

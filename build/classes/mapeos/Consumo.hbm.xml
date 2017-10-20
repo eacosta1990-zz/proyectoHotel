@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Consumo" table="consumo">
+		<id column="idConsumo" name="idConsumo">
+			<generator class="identity" />
+		</id>
+		<property name="consumo" type="string" column="consumo" />
+		<property name="precio" type="float" column="precio" />
+		
+		<set name="ticketConsumoItem" table="ticketConsumoItem" inverse="true" lazy="true" fetch="select">
+			<key column="idConsumo" not-null="true"/>
+			<one-to-many class="datos.TicketConsumoItem" />	
+		</set>
+		
+		
+		
+		<set name="frigobarItem" table="frigobarItem" inverse="true" lazy="true" fetch="select">
+			<key column="idConsumo" not-null="true"/>
+			<one-to-many class="datos.FrigobarItem" />	
+		</set>
+
+<!-- 
+
+	
+		
+		 -->
+	</class>
+</hibernate-mapping>

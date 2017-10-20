@@ -1,0 +1,21 @@
+package test;
+
+import java.util.List;
+
+import datos.Login;
+import negocio.LoginABM;
+
+public class Test {
+
+	public static void main(String[] args) {
+		LoginABM abm = new LoginABM();
+		// traer el obj a modificar
+		List<Login> c = abm.traerLogin();
+		for (Login Login : c) {
+			System.out.println("Login -->" + Login);
+		}
+
+		System.out.println("Terminado !");
+	}
+
+}

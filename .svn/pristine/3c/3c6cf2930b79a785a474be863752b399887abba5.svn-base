@@ -1,0 +1,49 @@
+package negocio;
+
+import java.util.List;
+
+import dao.HabitacionDao;
+import datos.Habitacion;
+import datos.Hotel;
+import datos.TipoHabitacion;
+
+public class HabitacionABM {
+	HabitacionDao dao = new HabitacionDao();
+
+	
+	public Habitacion traerHabitacion(int id) {
+		Habitacion c = dao.traerHabitacion(id);
+		// implementar si c es null lanzar Exception
+		return c;
+	}
+
+	public int agregar(String nroHabitacion, int capacidadMax, int disponible, TipoHabitacion tipoHabitacion, Hotel hotel) {
+		// consultar si existe un Habitacion con el mismo dni, si existe arrojar la
+		// Excepcion
+		Habitacion c = new Habitacion(nroHabitacion, capacidadMax, disponible, hotel, tipoHabitacion);
+
+		return dao.agregar(c);
+	}
+
+	public void modificar(Habitacion c) {
+		/*
+		 * implementar antes de actualizar que no exista un Habitacion con el mismo
+		 * documento a modificar y con el mismo id, lanzar la Exception
+		 */
+		dao.actualizar(c);
+	}
+
+	public void eliminar(int idHabitacion) {
+		Habitacion c = dao.traerHabitacion(idHabitacion);
+		dao.eliminar(c);
+	}
+	public List<Habitacion> traerHabitacionDisponible() {
+		return dao.traerHabitacionDisponible();
+	}
+	public List<Habitacion> traerHabitacionPorTipo(int tipo,int capacidad) {
+		return dao.traerHabitacionPorTipo(tipo,capacidad);
+	}
+	public List<Habitacion> traerHabitacion() {
+		return dao.traerHabitacion();
+	}
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.TipoMantenimiento" table="tipomantenimiento">
+		<id column="idTipoMantenimiento" name="idTipoMantenimiento">
+			<generator class="identity" />
+		</id>
+		<property name="tipoMantenimiento" type="string" column="tipoMantenimiento" />
+		    
+		<set name="ticketMantenimiento" table="ticketMantenimiento" inverse="true" lazy="true" fetch="select">
+			<key column="idTipoMantenimiento" not-null="true"/>
+			<one-to-many class="datos.TicketMantenimiento" />	
+		</set>
+	</class>
+</hibernate-mapping>

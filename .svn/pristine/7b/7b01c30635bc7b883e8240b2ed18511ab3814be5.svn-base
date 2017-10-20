@@ -1,0 +1,504 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-09-2016 a las 23:58:40
+-- Versión del servidor: 5.6.17
+-- Versión de PHP: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `hotel_unla`
+--
+CREATE DATABASE IF NOT EXISTS `hotel_unla` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `hotel_unla`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cliente`
+--
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `apellido` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `direccion` varchar(45) NOT NULL,
+  `dni` mediumtext NOT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consumo`
+--
+
+CREATE TABLE IF NOT EXISTS `consumo` (
+  `idConsumo` int(11) NOT NULL AUTO_INCREMENT,
+  `consumo` varchar(45) NOT NULL,
+  `precio` float NOT NULL,
+  PRIMARY KEY (`idConsumo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `empleado`
+--
+
+CREATE TABLE IF NOT EXISTS `empleado` (
+  `idEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `apellido` varchar(45) NOT NULL,
+  `dni` mediumtext NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `direccion` varchar(45) NOT NULL,
+  `nroLegajo` varchar(45) NOT NULL,
+  `sueldo` float NOT NULL DEFAULT '0',
+  `idTipoEmpleado` int(11) NOT NULL,
+  PRIMARY KEY (`idEmpleado`),
+  KEY `fk_empleado_tipoEmpleado1_idx` (`idTipoEmpleado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `empleado`
+--
+
+INSERT INTO `empleado` (`idEmpleado`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `direccion`, `nroLegajo`, `sueldo`, `idTipoEmpleado`) VALUES
+(1, 'Juan', 'Pérez', '37906839', '', '', '', '', 5, 1),
+(2, 'Rodrigo', 'Pereyra', '11342575', '', 'rod@gmail.com', '', '654546554', 6000, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadia`
+--
+
+CREATE TABLE IF NOT EXISTS `estadia` (
+  `idEstadia` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaDesde` datetime NOT NULL,
+  `fechaHasta` datetime NOT NULL,
+  `senia` float DEFAULT NULL,
+  `fechaReserva` datetime NOT NULL,
+  `precio` float NOT NULL,
+  `idEstado` int(11) NOT NULL,
+  `idFrigobar` int(11) NOT NULL,
+  PRIMARY KEY (`idEstadia`),
+  KEY `fk_estadia_estado1_idx` (`idEstado`),
+  KEY `fk_estadia_frigobar1_idx` (`idFrigobar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadia_has_cliente`
+--
+
+CREATE TABLE IF NOT EXISTS `estadia_has_cliente` (
+  `idEstadia` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  PRIMARY KEY (`idEstadia`,`idCliente`),
+  KEY `fk_estadia_has_cliente_cliente1_idx` (`idCliente`),
+  KEY `fk_estadia_has_cliente_estadia1_idx` (`idEstadia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE IF NOT EXISTS `estado` (
+  `idEstado` int(11) NOT NULL AUTO_INCREMENT,
+  `estado` varchar(45) NOT NULL,
+  PRIMARY KEY (`idEstado`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `factura`
+--
+
+CREATE TABLE IF NOT EXISTS `factura` (
+  `idFactura` int(11) NOT NULL AUTO_INCREMENT,
+  `nroFactura` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  `idFormaPago` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `idLogin` int(11) NOT NULL,
+  `idEstadia` int(11) NOT NULL,
+  PRIMARY KEY (`idFactura`),
+  KEY `fk_factura_formaPago1_idx` (`idFormaPago`),
+  KEY `fk_factura_cliente1_idx` (`idCliente`),
+  KEY `fk_factura_login1_idx` (`idLogin`),
+  KEY `fk_factura_estadia1_idx` (`idEstadia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `facturaitem`
+--
+
+CREATE TABLE IF NOT EXISTS `facturaitem` (
+  `idFacturaItem` int(11) NOT NULL AUTO_INCREMENT,
+  `idFactura` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` float DEFAULT NULL,
+  PRIMARY KEY (`idFacturaItem`),
+  KEY `fk_facturaItem_factura1_idx` (`idFactura`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `formapago`
+--
+
+CREATE TABLE IF NOT EXISTS `formapago` (
+  `idFormaPago` int(11) NOT NULL AUTO_INCREMENT,
+  `formaPago` varchar(45) NOT NULL,
+  PRIMARY KEY (`idFormaPago`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `frigobar`
+--
+
+CREATE TABLE IF NOT EXISTS `frigobar` (
+  `idFrigobar` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idFrigobar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `frigobaritem`
+--
+
+CREATE TABLE IF NOT EXISTS `frigobaritem` (
+  `idFrigobarItem` int(11) NOT NULL,
+  `idConsumo` int(11) NOT NULL,
+  `idFrigobar` int(11) NOT NULL,
+  `stockExistente` int(11) NOT NULL,
+  `stockDeseable` int(11) NOT NULL,
+  PRIMARY KEY (`idFrigobarItem`),
+  KEY `fk_frigobarItem_consumo1_idx` (`idConsumo`),
+  KEY `fk_frigobarItem_frigobar1_idx` (`idFrigobar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `habitacion`
+--
+
+CREATE TABLE IF NOT EXISTS `habitacion` (
+  `idHabitacion` int(11) NOT NULL AUTO_INCREMENT,
+  `nroHabitacion` varchar(45) NOT NULL,
+  `capacidadMax` int(11) NOT NULL,
+  `disponible` tinyint(1) NOT NULL,
+  `idHotel` int(11) NOT NULL,
+  `idTipoHabitacion` int(11) NOT NULL,
+  PRIMARY KEY (`idHabitacion`),
+  KEY `fk_habitacion_hotel1_idx` (`idHotel`),
+  KEY `fk_habitacion_tipohabitacion1_idx` (`idTipoHabitacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `habitacion_has_estadia`
+--
+
+CREATE TABLE IF NOT EXISTS `habitacion_has_estadia` (
+  `idHabitacion` int(11) NOT NULL,
+  `idEstadia` int(11) NOT NULL,
+  PRIMARY KEY (`idHabitacion`,`idEstadia`),
+  KEY `fk_habitacion_has_estadia_estadia1_idx` (`idEstadia`),
+  KEY `fk_habitacion_has_estadia_habitacion1_idx` (`idHabitacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hotel`
+--
+
+CREATE TABLE IF NOT EXISTS `hotel` (
+  `idHotel` int(11) NOT NULL AUTO_INCREMENT,
+  `hotel` varchar(45) NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `direccion` varchar(45) NOT NULL,
+  `categoria` int(2) NOT NULL,
+  PRIMARY KEY (`idHotel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `login`
+--
+
+CREATE TABLE IF NOT EXISTS `login` (
+  `idLogin` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(15) NOT NULL,
+  `clave` varchar(15) NOT NULL,
+  `privilegio` int(11) NOT NULL,
+  PRIMARY KEY (`idLogin`),
+  UNIQUE KEY `usuario_UNIQUE` (`usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `login`
+--
+
+INSERT INTO `login` (`idLogin`, `usuario`, `clave`, `privilegio`) VALUES
+(1, 'admin', 'admin', 40),
+(2, 'recepcionista', 'recepcionista', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `oferta`
+--
+
+CREATE TABLE IF NOT EXISTS `oferta` (
+  `idOferta` int(11) NOT NULL AUTO_INCREMENT,
+  `descuento` float NOT NULL,
+  `fechaDesde` datetime NOT NULL,
+  `fechaHasta` datetime NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idOferta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `servicio`
+--
+
+CREATE TABLE IF NOT EXISTS `servicio` (
+  `idServicio` int(11) NOT NULL AUTO_INCREMENT,
+  `servicio` varchar(45) NOT NULL,
+  `descripcion` text,
+  `incluido` tinyint(1) NOT NULL,
+  `disponible` tinyint(1) NOT NULL,
+  `precio` float NOT NULL,
+  `idHotel` int(11) NOT NULL,
+  PRIMARY KEY (`idServicio`),
+  KEY `fk_servicio_hotel_idx` (`idHotel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ticketconsumo`
+--
+
+CREATE TABLE IF NOT EXISTS `ticketconsumo` (
+  `idTicketConsumo` int(11) NOT NULL AUTO_INCREMENT,
+  `nroFactura` int(11) DEFAULT NULL,
+  `fecha` datetime NOT NULL,
+  `firmado` tinyint(1) NOT NULL,
+  `idEstadia` int(11) NOT NULL,
+  `idLogin` int(11) NOT NULL,
+  PRIMARY KEY (`idTicketConsumo`),
+  KEY `fk_ticketConsumo_estadia1_idx` (`idEstadia`),
+  KEY `fk_ticketConsumo_login1_idx` (`idLogin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ticketconsumoitem`
+--
+
+CREATE TABLE IF NOT EXISTS `ticketconsumoitem` (
+  `idTicketConsumoItem` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL,
+  `precio` float DEFAULT NULL,
+  `idTicketConsumo` int(11) NOT NULL,
+  `idConsumo` int(11) NOT NULL,
+  PRIMARY KEY (`idTicketConsumoItem`),
+  KEY `fk_ticketConsumoItem_ticketConsumo1_idx` (`idTicketConsumo`),
+  KEY `fk_ticketConsumoItem_consumo1_idx` (`idConsumo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ticketmantenimiento`
+--
+
+CREATE TABLE IF NOT EXISTS `ticketmantenimiento` (
+  `idTicketMantenimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `problema` varchar(255) DEFAULT NULL,
+  `precio` float DEFAULT NULL,
+  `fechaInicio` datetime NOT NULL,
+  `fechaResolucion` datetime DEFAULT NULL,
+  `terminado` tinyint(1) NOT NULL,
+  `idTipoMantenimiento` int(11) NOT NULL,
+  `idLogin` int(11) NOT NULL,
+  PRIMARY KEY (`idTicketMantenimiento`),
+  KEY `fk_tareamantenimiento_tipoMantenimiento1_idx` (`idTipoMantenimiento`),
+  KEY `fk_ticketMantenimiento_login1_idx` (`idLogin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipoempleado`
+--
+
+CREATE TABLE IF NOT EXISTS `tipoempleado` (
+  `idTipoEmpleado` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoEmpleado` varchar(45) NOT NULL,
+  PRIMARY KEY (`idTipoEmpleado`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `tipoempleado`
+--
+
+INSERT INTO `tipoempleado` (`idTipoEmpleado`, `tipoEmpleado`) VALUES
+(1, 'Administrador'),
+(2, 'Recepcionista'),
+(3, 'Mucama'),
+(4, 'Mantenimiento');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipohabitacion`
+--
+
+CREATE TABLE IF NOT EXISTS `tipohabitacion` (
+  `idTipoHabitacion` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoHabitacion` varchar(45) NOT NULL,
+  `descripcion` text NOT NULL,
+  `precio` float NOT NULL,
+  PRIMARY KEY (`idTipoHabitacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipomantenimiento`
+--
+
+CREATE TABLE IF NOT EXISTS `tipomantenimiento` (
+  `idTipoMantenimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoMantenimiento` varchar(45) NOT NULL,
+  PRIMARY KEY (`idTipoMantenimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `empleado`
+--
+ALTER TABLE `empleado`
+  ADD CONSTRAINT `fk_empleado_tipoEmpleado1` FOREIGN KEY (`idTipoEmpleado`) REFERENCES `tipoempleado` (`idTipoEmpleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pk` FOREIGN KEY (`idEmpleado`) REFERENCES `login` (`idLogin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `estadia`
+--
+ALTER TABLE `estadia`
+  ADD CONSTRAINT `fk_estadia_estado1` FOREIGN KEY (`idEstado`) REFERENCES `estado` (`idEstado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_estadia_frigobar1` FOREIGN KEY (`idFrigobar`) REFERENCES `frigobar` (`idFrigobar`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `estadia_has_cliente`
+--
+ALTER TABLE `estadia_has_cliente`
+  ADD CONSTRAINT `fk_estadia_has_cliente_estadia1` FOREIGN KEY (`idEstadia`) REFERENCES `estadia` (`idEstadia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_estadia_has_cliente_cliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `factura`
+--
+ALTER TABLE `factura`
+  ADD CONSTRAINT `fk_factura_formaPago1` FOREIGN KEY (`idFormaPago`) REFERENCES `formapago` (`idFormaPago`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_factura_cliente1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_factura_login1` FOREIGN KEY (`idLogin`) REFERENCES `login` (`idLogin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_factura_estadia1` FOREIGN KEY (`idEstadia`) REFERENCES `estadia` (`idEstadia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `facturaitem`
+--
+ALTER TABLE `facturaitem`
+  ADD CONSTRAINT `fk_facturaItem_factura1` FOREIGN KEY (`idFactura`) REFERENCES `factura` (`idFactura`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `frigobaritem`
+--
+ALTER TABLE `frigobaritem`
+  ADD CONSTRAINT `fk_frigobarItem_consumo1` FOREIGN KEY (`idConsumo`) REFERENCES `consumo` (`idConsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_frigobarItem_frigobar1` FOREIGN KEY (`idFrigobar`) REFERENCES `frigobar` (`idFrigobar`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `habitacion`
+--
+ALTER TABLE `habitacion`
+  ADD CONSTRAINT `fk_habitacion_hotel1` FOREIGN KEY (`idHotel`) REFERENCES `hotel` (`idHotel`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_habitacion_tipohabitacion1` FOREIGN KEY (`idTipoHabitacion`) REFERENCES `tipohabitacion` (`idTipoHabitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `habitacion_has_estadia`
+--
+ALTER TABLE `habitacion_has_estadia`
+  ADD CONSTRAINT `fk_habitacion_has_estadia_habitacion1` FOREIGN KEY (`idHabitacion`) REFERENCES `habitacion` (`idHabitacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_habitacion_has_estadia_estadia1` FOREIGN KEY (`idEstadia`) REFERENCES `estadia` (`idEstadia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `servicio`
+--
+ALTER TABLE `servicio`
+  ADD CONSTRAINT `fk_servicio_hotel` FOREIGN KEY (`idHotel`) REFERENCES `hotel` (`idHotel`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ticketconsumo`
+--
+ALTER TABLE `ticketconsumo`
+  ADD CONSTRAINT `fk_ticketConsumo_estadia1` FOREIGN KEY (`idEstadia`) REFERENCES `estadia` (`idEstadia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ticketConsumo_login1` FOREIGN KEY (`idLogin`) REFERENCES `login` (`idLogin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ticketconsumoitem`
+--
+ALTER TABLE `ticketconsumoitem`
+  ADD CONSTRAINT `fk_ticketConsumoItem_ticketConsumo1` FOREIGN KEY (`idTicketConsumo`) REFERENCES `ticketconsumo` (`idTicketConsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ticketConsumoItem_consumo1` FOREIGN KEY (`idConsumo`) REFERENCES `consumo` (`idConsumo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ticketmantenimiento`
+--
+ALTER TABLE `ticketmantenimiento`
+  ADD CONSTRAINT `fk_tareamantenimiento_tipoMantenimiento1` FOREIGN KEY (`idTipoMantenimiento`) REFERENCES `tipomantenimiento` (`idTipoMantenimiento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ticketMantenimiento_login1` FOREIGN KEY (`idLogin`) REFERENCES `login` (`idLogin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

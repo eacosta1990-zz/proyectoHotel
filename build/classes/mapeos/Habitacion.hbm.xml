@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Habitacion" table="habitacion">
+		<id column="idHabitacion" name="idHabitacion">
+			<generator class="identity" />
+		</id>
+		<property name="nroHabitacion" type="string" column="nroHabitacion" />
+		<property name="capacidadMax" type="int" column="capacidadMax" />
+		<property name="disponible" type="int" column="disponible" />
+		
+		<many-to-one name="hotel" class="datos.Hotel" column="idHotel" not-null="true"/>
+		
+		<many-to-one name="tipoHabitacion" class="datos.TipoHabitacion" column="idTipoHabitacion" not-null="true"/>
+		
+		 
+		 
+		<set name="estadias" table="habitacion_has_estadia"  lazy="true"  outer-join="true">
+			<key column="idHabitacion"  />
+			<many-to-many column="idEstadia" class="datos.Estadia" />
+		</set>	
+
+		
+		
+
+
+	</class>
+</hibernate-mapping>
